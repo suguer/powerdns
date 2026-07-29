@@ -1,35 +1,43 @@
-# Swagger\Client\ConfigApi
-
-All URIs are relative to *https://localhost/api/v1*
-
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getConfig**](ConfigApi.md#getConfig) | **GET** /servers/{server_id}/config | Returns all ConfigSettings for a single server
-[**getConfigSetting**](ConfigApi.md#getConfigSetting) | **GET** /servers/{server_id}/config/{config_setting_name} | Returns a specific ConfigSetting for a single server
+# OpenAPI\Client\ConfigApi
 
 
-# **getConfig**
-> \Swagger\Client\Model\ConfigSetting[] getConfig($server_id)
+
+All URIs are relative to /api/v1, except if the operation defines another base path.
+
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getConfig()**](ConfigApi.md#getConfig) | **GET** /servers/{server_id}/config | Returns all ConfigSettings for a single server |
+| [**getConfigSetting()**](ConfigApi.md#getConfigSetting) | **GET** /servers/{server_id}/config/{config_setting_name} | Returns a specific ConfigSetting for a single server |
+
+
+## `getConfig()`
+
+```php
+getConfig($server_id): \OpenAPI\Client\Model\ConfigSetting[]
+```
 
 Returns all ConfigSettings for a single server
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: APIKeyHeader
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-$apiInstance = new Swagger\Client\Api\ConfigApi(
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ConfigApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$server_id = "server_id_example"; // string | The id of the server to retrieve
+$server_id = 'server_id_example'; // string | The id of the server to retrieve
 
 try {
     $result = $apiInstance->getConfig($server_id);
@@ -37,18 +45,17 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ConfigApi->getConfig: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **server_id** | **string**| The id of the server to retrieve |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **server_id** | **string**| The id of the server to retrieve | |
 
 ### Return type
 
-[**\Swagger\Client\Model\ConfigSetting[]**](../Model/ConfigSetting.md)
+[**\OpenAPI\Client\Model\ConfigSetting[]**](../Model/ConfigSetting.md)
 
 ### Authorization
 
@@ -56,36 +63,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
 
-# **getConfigSetting**
-> \Swagger\Client\Model\ConfigSetting getConfigSetting($server_id, $config_setting_name)
+## `getConfigSetting()`
+
+```php
+getConfigSetting($server_id, $config_setting_name): \OpenAPI\Client\Model\ConfigSetting
+```
 
 Returns a specific ConfigSetting for a single server
 
 NOT IMPLEMENTED
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
-// Configure API key authorization: APIKeyHeader
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
-// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-// $config = Swagger\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
 
-$apiInstance = new Swagger\Client\Api\ConfigApi(
+// Configure API key authorization: APIKeyHeader
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKey('X-API-Key', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setApiKeyPrefix('X-API-Key', 'Bearer');
+
+
+$apiInstance = new OpenAPI\Client\Api\ConfigApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$server_id = "server_id_example"; // string | The id of the server to retrieve
-$config_setting_name = "config_setting_name_example"; // string | The name of the setting to retrieve
+$server_id = 'server_id_example'; // string | The id of the server to retrieve
+$config_setting_name = 'config_setting_name_example'; // string | The name of the setting to retrieve
 
 try {
     $result = $apiInstance->getConfigSetting($server_id, $config_setting_name);
@@ -93,19 +108,18 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ConfigApi->getConfigSetting: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **server_id** | **string**| The id of the server to retrieve |
- **config_setting_name** | **string**| The name of the setting to retrieve |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **server_id** | **string**| The id of the server to retrieve | |
+| **config_setting_name** | **string**| The name of the setting to retrieve | |
 
 ### Return type
 
-[**\Swagger\Client\Model\ConfigSetting**](../Model/ConfigSetting.md)
+[**\OpenAPI\Client\Model\ConfigSetting**](../Model/ConfigSetting.md)
 
 ### Authorization
 
@@ -113,8 +127,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
-
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
+[[Back to README]](../../README.md)
