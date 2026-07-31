@@ -98,8 +98,11 @@ class ConfigApi
      * @throws \InvalidArgumentException
      * @return \Swagger\Client\Model\ConfigSetting[] | Configuration
      */
-    public function getConfig($server_id)
+    public function getConfig($server_id=null)
     {
+        if(!$server_id){
+            return $this->config;
+        }
         list($response) = $this->getConfigWithHttpInfo($server_id);
         return $response;
     }
