@@ -123,7 +123,7 @@ class SearchApi
      */
     public function searchDataWithHttpInfo($server_id, $q, $max, $object_type = null)
     {
-        $returnType = '\Swagger\Client\Model\SearchResults';
+        $returnType = '\Swagger\Client\Model\SearchResult[]';
         $request = $this->searchDataRequest($server_id, $q, $max, $object_type);
 
         try {

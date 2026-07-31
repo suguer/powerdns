@@ -82,10 +82,10 @@ class ConfigApi
     /**
      * @return Configuration
      */
-    public function getConfig()
-    {
-        return $this->config;
-    }
+//    public function getConfig()
+//    {
+//        return $this->config;
+//    }
 
     /**
      * Operation getConfig
@@ -96,7 +96,7 @@ class ConfigApi
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \Swagger\Client\Model\ConfigSetting[]
+     * @return \Swagger\Client\Model\ConfigSetting[] | Configuration
      */
     public function getConfig($server_id)
     {
