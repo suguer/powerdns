@@ -358,11 +358,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -378,11 +378,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -403,7 +403,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -646,11 +646,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -666,11 +666,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -691,7 +691,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -707,7 +707,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  \Swagger\Client\Model\Zone $zone_struct The zone struct to patch with (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -726,7 +726,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  \Swagger\Client\Model\Zone $zone_struct The zone struct to patch with (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -835,7 +835,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  \Swagger\Client\Model\Zone $zone_struct The zone struct to patch with (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -857,7 +857,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  \Swagger\Client\Model\Zone $zone_struct The zone struct to patch with (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -909,7 +909,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  \Swagger\Client\Model\Zone $zone_struct The zone struct to patch with (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -975,11 +975,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -995,11 +995,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -1020,7 +1020,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'POST',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1263,11 +1263,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -1283,11 +1283,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -1308,7 +1308,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'DELETE',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1324,7 +1324,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone_id The id of the zone to retrieve (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1343,7 +1343,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone_id The id of the zone to retrieve (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1452,7 +1452,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone_id The id of the zone to retrieve (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1474,7 +1474,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone_id The id of the zone to retrieve (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1526,7 +1526,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone_id The id of the zone to retrieve (required)
-     * @param  bool $rrsets â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œrrsetsâ€ in the response Zone object. (optional, default to true)
+     * @param  bool $rrsets ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°rrsets¡± in the response Zone object. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1597,11 +1597,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -1617,11 +1617,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -1642,7 +1642,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -1658,7 +1658,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone When set to the name of a zone, only this zone is returned. If no zone with that name exists, the response is an empty array. This can e.g. be used to check if a zone exists in the database without having to guess/encode the zone&#39;s id or to check if a zone exists. (optional)
-     * @param  bool $dnssec â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œdnssecâ€ and â€edited_serialâ€ fields in the Zone objects. Setting this to â€falseâ€ will make the query a lot faster. (optional, default to true)
+     * @param  bool $dnssec ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°dnssec¡± and ¡±edited_serial¡± fields in the Zone objects. Setting this to ¡±false¡± will make the query a lot faster. (optional, default to true)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1677,7 +1677,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone When set to the name of a zone, only this zone is returned. If no zone with that name exists, the response is an empty array. This can e.g. be used to check if a zone exists in the database without having to guess/encode the zone&#39;s id or to check if a zone exists. (optional)
-     * @param  bool $dnssec â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œdnssecâ€ and â€edited_serialâ€ fields in the Zone objects. Setting this to â€falseâ€ will make the query a lot faster. (optional, default to true)
+     * @param  bool $dnssec ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°dnssec¡± and ¡±edited_serial¡± fields in the Zone objects. Setting this to ¡±false¡± will make the query a lot faster. (optional, default to true)
      *
      * @throws \Swagger\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
@@ -1786,7 +1786,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone When set to the name of a zone, only this zone is returned. If no zone with that name exists, the response is an empty array. This can e.g. be used to check if a zone exists in the database without having to guess/encode the zone&#39;s id or to check if a zone exists. (optional)
-     * @param  bool $dnssec â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œdnssecâ€ and â€edited_serialâ€ fields in the Zone objects. Setting this to â€falseâ€ will make the query a lot faster. (optional, default to true)
+     * @param  bool $dnssec ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°dnssec¡± and ¡±edited_serial¡± fields in the Zone objects. Setting this to ¡±false¡± will make the query a lot faster. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1808,7 +1808,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone When set to the name of a zone, only this zone is returned. If no zone with that name exists, the response is an empty array. This can e.g. be used to check if a zone exists in the database without having to guess/encode the zone&#39;s id or to check if a zone exists. (optional)
-     * @param  bool $dnssec â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œdnssecâ€ and â€edited_serialâ€ fields in the Zone objects. Setting this to â€falseâ€ will make the query a lot faster. (optional, default to true)
+     * @param  bool $dnssec ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°dnssec¡± and ¡±edited_serial¡± fields in the Zone objects. Setting this to ¡±false¡± will make the query a lot faster. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -1860,7 +1860,7 @@ class ZonesApi
      *
      * @param  string $server_id The id of the server to retrieve (required)
      * @param  string $zone When set to the name of a zone, only this zone is returned. If no zone with that name exists, the response is an empty array. This can e.g. be used to check if a zone exists in the database without having to guess/encode the zone&#39;s id or to check if a zone exists. (optional)
-     * @param  bool $dnssec â€œtrueâ€ (default) or â€œfalseâ€, whether to include the â€œdnssecâ€ and â€edited_serialâ€ fields in the Zone objects. Setting this to â€falseâ€ will make the query a lot faster. (optional, default to true)
+     * @param  bool $dnssec ¡°true¡± (default) or ¡°false¡±, whether to include the ¡°dnssec¡± and ¡±edited_serial¡± fields in the Zone objects. Setting this to ¡±false¡± will make the query a lot faster. (optional, default to true)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
@@ -1921,11 +1921,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -1941,11 +1941,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -1966,7 +1966,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'GET',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2209,11 +2209,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -2229,11 +2229,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -2254,7 +2254,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2511,11 +2511,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -2531,11 +2531,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -2556,7 +2556,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PATCH',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -2813,11 +2813,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -2833,11 +2833,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -2858,7 +2858,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
@@ -3138,11 +3138,11 @@ class ZonesApi
             if($headers['Content-Type'] === 'application/json') {
                 // \stdClass has no __toString(), so we should encode it manually
                 if ($httpBody instanceof \stdClass) {
-                    $httpBody = \GuzzleHttp\json_encode($httpBody);
+                    $httpBody = \json_encode($httpBody);
                 }
                 // array has no __toString(), so we should encode it manually
                 if(is_array($httpBody)) {
-                    $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
+                    $httpBody = \json_encode(ObjectSerializer::sanitizeForSerialization($httpBody));
                 }
             }
         } elseif (count($formParams) > 0) {
@@ -3158,11 +3158,11 @@ class ZonesApi
                 $httpBody = new MultipartStream($multipartContents);
 
             } elseif ($headers['Content-Type'] === 'application/json') {
-                $httpBody = \GuzzleHttp\json_encode($formParams);
+                $httpBody = \json_encode($formParams);
 
             } else {
                 // for HTTP post (form)
-                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+                $httpBody = \GuzzleHttp\Psr7\Query::build($formParams);
             }
         }
 
@@ -3183,7 +3183,7 @@ class ZonesApi
             $headers
         );
 
-        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        $query = \GuzzleHttp\Psr7\Query::build($queryParams);
         return new Request(
             'PUT',
             $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
